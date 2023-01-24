@@ -1,12 +1,9 @@
 package com.mvoleg.coffeespringbootapp.mapper;
 
-import com.mvoleg.coffeespringbootapp.dto.MenuCategoryDTO;
+import com.mvoleg.coffeespringbootapp.dto.menucategory.MenuCategoryDTO;
 import com.mvoleg.coffeespringbootapp.entity.MenuCategoryEntity;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class MenuCategoryMapper {
