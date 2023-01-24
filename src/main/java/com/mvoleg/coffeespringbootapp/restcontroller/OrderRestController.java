@@ -1,7 +1,6 @@
 package com.mvoleg.coffeespringbootapp.restcontroller;
 
-import com.mvoleg.coffeespringbootapp.dto.UserOrderDTO;
-import com.mvoleg.coffeespringbootapp.entity.OrderEntity;
+import com.mvoleg.coffeespringbootapp.dto.order.UserOrderDTO;
 import com.mvoleg.coffeespringbootapp.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,8 +21,8 @@ public class OrderRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<OrderEntity>> getAllOrders() {
-        List<OrderEntity> allOrders = orderService.findAllOrders();
+    public ResponseEntity<List<UserOrderDTO>> getAllOrders() {
+        List<UserOrderDTO> allOrders = orderService.findAllOrders();
         return new ResponseEntity<>(allOrders, HttpStatus.OK);
     }
 

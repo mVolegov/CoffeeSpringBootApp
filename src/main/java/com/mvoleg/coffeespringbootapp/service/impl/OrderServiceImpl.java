@@ -1,6 +1,7 @@
 package com.mvoleg.coffeespringbootapp.service.impl;
 
-import com.mvoleg.coffeespringbootapp.dto.UserOrderDTO;
+import com.mvoleg.coffeespringbootapp.dto.order.MenuElementInOrderDTO;
+import com.mvoleg.coffeespringbootapp.dto.order.UserOrderDTO;
 import com.mvoleg.coffeespringbootapp.entity.MenuElementEntity;
 import com.mvoleg.coffeespringbootapp.entity.OrderCompositionEntity;
 import com.mvoleg.coffeespringbootapp.entity.OrderEntity;
@@ -19,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -41,8 +41,42 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderEntity> findAllOrders() {
-        return orderRepository.findAll();
+    public List<UserOrderDTO> findAllOrders() {
+        List<UserOrderDTO> userOrderDTOs = new ArrayList<>();
+
+        List<OrderEntity> allOrderEntities = orderRepository.findAll();
+        for (OrderEntity orderEntity : allOrderEntities) {
+            UserEntity user = orderEntity.getUser();
+            List<OrderCompositionEntity> menuElementsInOrder = orderEntity.getMenuElementsInOrder();
+
+            List<MenuElementInOrderDTO> menuElementInOrderDTOs = new ArrayList<>();
+
+            for (OrderCompositionEntity menuElementInOrder : menuElementsInOrder) {
+                Long menuElementId = menuElementInOrder.getMenuElement().getId();
+                String menuElementName = menuElementInOrder.getMenuElement().getName();
+                Integer menuElementAmount = menuElementInOrder.getMenuElementAmount();
+                Integer sugarAmount = menuElementInOrder.getSugarAmount();
+                Integer milkAmount = menuElementInOrder.getMilkAmount();
+
+                menuElementInOrderDTOs.add(new MenuElementInOrderDTO(
+                        menuElementId,
+                        menuElementName,
+                        menuElementAmount,
+                        sugarAmount,
+                        milkAmount
+                    )
+                );
+            }
+
+            userOrderDTOs.add(new UserOrderDTO(
+                    user.getUsername(),
+                    menuElementInOrderDTOs,
+                    orderEntity.getTotalOrderPrice()
+                )
+            );
+        }
+
+        return userOrderDTOs;
     }
 
     @Transactional
@@ -58,22 +92,33 @@ public class OrderServiceImpl implements OrderService {
         orderToSave.setUser(userEntity);
         orderToSave.setCreatedDate(LocalDateTime.now());
 
-        Map<Long, Integer> cart = userOrderDTO.getCart();
+        List<MenuElementInOrderDTO> menuElementsInOrderDTOs = userOrderDTO.getMenuElementsInOrder();
 
         List<OrderCompositionEntity> menuElementsInOrder = new ArrayList<>();
 
-        cart
-                .forEach((menuElementId, amount) -> {
-                    MenuElementEntity menuElement = menuElementRepository
-                            .findById(menuElementId)
-                            .orElseThrow(() -> new MenuElementNotFoundException(menuElementId));
+        for (MenuElementInOrderDTO menuElementInOrderDTO : menuElementsInOrderDTOs) {
+            Long id = menuElementInOrderDTO.getId();
+            Integer amount = menuElementInOrderDTO.getAmount();
+            Integer sugarAmount = menuElementInOrderDTO.getSugarAmount();
+            Integer milkAmount = menuElementInOrderDTO.getMilkAmount();
 
-                    menuElementsInOrder.add(new OrderCompositionEntity(menuElement, amount, orderToSave));
-                }
-        );
+            MenuElementEntity menuElementEntity = menuElementRepository
+                    .findById(id)
+                    .orElseThrow(() -> new MenuElementNotFoundException(id));
+
+            menuElementsInOrder.add(new OrderCompositionEntity(
+                    menuElementEntity,
+                    amount,
+                    orderToSave,
+                    sugarAmount,
+                    milkAmount
+                )
+            );
+        }
 
         orderCompositionRepository.saveAll(menuElementsInOrder);
 
+        orderToSave.setTotalOrderPrice(userOrderDTO.getTotalOrderPrice());
         orderToSave.setMenuElementsInOrder(menuElementsInOrder);
 
         return orderRepository.save(orderToSave);

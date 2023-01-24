@@ -3,6 +3,7 @@ package com.mvoleg.coffeespringbootapp.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,9 @@ public class OrderEntity {
 
     @OneToMany(mappedBy = "order")
     private List<OrderCompositionEntity> menuElementsInOrder = new ArrayList<>();
+
+    @Column(name = "total_price", nullable = false)
+    private BigDecimal totalOrderPrice;
 
     public Long getId() {
         return id;
@@ -60,5 +64,13 @@ public class OrderEntity {
 
     public void setMenuElementsInOrder(List<OrderCompositionEntity> menuElementsInOrder) {
         this.menuElementsInOrder = menuElementsInOrder;
+    }
+
+    public BigDecimal getTotalOrderPrice() {
+        return totalOrderPrice;
+    }
+
+    public void setTotalOrderPrice(BigDecimal totalOrderPrice) {
+        this.totalOrderPrice = totalOrderPrice;
     }
 }

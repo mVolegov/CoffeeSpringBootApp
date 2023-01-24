@@ -21,16 +21,26 @@ public class OrderCompositionEntity {
     @Column(name = "menuelement_amount")
     private Integer menuElementAmount;
 
+    @Column(name = "sugar_amount")
+    private Integer sugarAmount;
+
+    @Column(name = "milk_amount")
+    private Integer milkAmount;
+
     public OrderCompositionEntity() {
     }
 
     public OrderCompositionEntity(MenuElementEntity menuElement,
                                   Integer menuElementAmount,
-                                  OrderEntity order) {
+                                  OrderEntity order,
+                                  Integer sugarAmount,
+                                  Integer milkAmount) {
         this.id = id;
         this.menuElement = menuElement;
         this.order = order;
         this.menuElementAmount = menuElementAmount;
+        this.sugarAmount = sugarAmount;
+        this.milkAmount = milkAmount;
     }
 
     public Long getId() {
@@ -55,6 +65,22 @@ public class OrderCompositionEntity {
 
     public void setOrder(OrderEntity order) {
         this.order = order;
+    }
+
+    public Integer getSugarAmount() {
+        return sugarAmount;
+    }
+
+    public void setSugarAmount(Integer sugarAmount) {
+        this.sugarAmount = sugarAmount;
+    }
+
+    public Integer getMilkAmount() {
+        return milkAmount;
+    }
+
+    public void setMilkAmount(Integer milkAmount) {
+        this.milkAmount = milkAmount;
     }
 
     public Integer getMenuElementAmount() {

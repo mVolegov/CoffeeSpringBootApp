@@ -1,7 +1,6 @@
 package com.mvoleg.coffeespringbootapp.restcontroller
 
-import com.mvoleg.coffeespringbootapp.dto.MenuCategoryDTO
-import com.mvoleg.coffeespringbootapp.entity.MenuCategoryEntity
+import com.mvoleg.coffeespringbootapp.dto.menucategory.MenuCategoryDTO
 import com.mvoleg.coffeespringbootapp.service.MenuCategoryService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
