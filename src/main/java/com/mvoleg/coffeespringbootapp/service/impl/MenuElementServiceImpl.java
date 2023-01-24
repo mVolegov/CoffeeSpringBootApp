@@ -1,14 +1,12 @@
 package com.mvoleg.coffeespringbootapp.service.impl;
 
-import com.mvoleg.coffeespringbootapp.dto.MenuCategoryDTO;
-import com.mvoleg.coffeespringbootapp.dto.MenuElementCategoryDTO;
-import com.mvoleg.coffeespringbootapp.dto.MenuElementDTO;
+import com.mvoleg.coffeespringbootapp.dto.menuelement.MenuElementCategoryDTO;
+import com.mvoleg.coffeespringbootapp.dto.menuelement.MenuElementDTO;
 import com.mvoleg.coffeespringbootapp.entity.MenuCategoryEntity;
 import com.mvoleg.coffeespringbootapp.entity.MenuElementEntity;
 import com.mvoleg.coffeespringbootapp.exception.MenuCategoryAlreadyAssignedToMenuElementException;
 import com.mvoleg.coffeespringbootapp.exception.MenuCategoryNotFoundException;
 import com.mvoleg.coffeespringbootapp.exception.MenuElementNotFoundException;
-import com.mvoleg.coffeespringbootapp.mapper.MenuCategoryMapper;
 import com.mvoleg.coffeespringbootapp.mapper.MenuElementMapper;
 import com.mvoleg.coffeespringbootapp.repository.MenuCategoryRepository;
 import com.mvoleg.coffeespringbootapp.repository.MenuElementRepository;
@@ -17,8 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -82,7 +78,6 @@ public class MenuElementServiceImpl implements MenuElementService {
         return MenuElementMapper.toDTO(savedMenuElementEntity);
     }
 
-    // TODO
     @Override
     public MenuElementDTO update(Long id, MenuElementDTO dto) {
         MenuElementEntity menuElementEntityToUpdate = menuElementRepository
@@ -93,8 +88,6 @@ public class MenuElementServiceImpl implements MenuElementService {
         menuElementEntity.setId(id);
 
         MenuElementEntity updatedMenuElementEntity = menuElementRepository.save(menuElementEntity);
-
-//        MenuElementEntity updatedMenuElementEntity = menuElementRepository.save(MenuElementMapper.toEntity(dto));
 
         return MenuElementMapper.toDTO(updatedMenuElementEntity);
     }

@@ -1,9 +1,9 @@
-package com.mvoleg.coffeespringbootapp.dto;
+package com.mvoleg.coffeespringbootapp.dto.menuelement;
+
+import com.mvoleg.coffeespringbootapp.dto.menucategory.MenuCategoryDTO;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 public class MenuElementDTO {
 

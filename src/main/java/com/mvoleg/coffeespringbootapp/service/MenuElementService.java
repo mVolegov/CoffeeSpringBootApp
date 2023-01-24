@@ -1,8 +1,7 @@
 package com.mvoleg.coffeespringbootapp.service;
 
-import com.mvoleg.coffeespringbootapp.dto.MenuElementCategoryDTO;
-import com.mvoleg.coffeespringbootapp.dto.MenuElementDTO;
-import com.mvoleg.coffeespringbootapp.entity.MenuElementEntity;
+import com.mvoleg.coffeespringbootapp.dto.menuelement.MenuElementCategoryDTO;
+import com.mvoleg.coffeespringbootapp.dto.menuelement.MenuElementDTO;
 
 import java.util.List;
 

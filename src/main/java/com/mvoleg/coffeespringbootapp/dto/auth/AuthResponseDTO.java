@@ -1,4 +1,4 @@
-package com.mvoleg.coffeespringbootapp.dto;
+package com.mvoleg.coffeespringbootapp.dto.auth;
 
 public class AuthResponseDTO {
 

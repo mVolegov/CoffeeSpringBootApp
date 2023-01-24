@@ -1,8 +1,8 @@
 package com.mvoleg.coffeespringbootapp.service.impl;
 
-import com.mvoleg.coffeespringbootapp.dto.AuthResponseDTO;
-import com.mvoleg.coffeespringbootapp.dto.LoginDTO;
-import com.mvoleg.coffeespringbootapp.dto.RegisterDTO;
+import com.mvoleg.coffeespringbootapp.dto.auth.AuthResponseDTO;
+import com.mvoleg.coffeespringbootapp.dto.auth.LoginDTO;
+import com.mvoleg.coffeespringbootapp.dto.auth.RegisterDTO;
 import com.mvoleg.coffeespringbootapp.entity.RoleEntity;
 import com.mvoleg.coffeespringbootapp.entity.Status;
 import com.mvoleg.coffeespringbootapp.entity.UserEntity;

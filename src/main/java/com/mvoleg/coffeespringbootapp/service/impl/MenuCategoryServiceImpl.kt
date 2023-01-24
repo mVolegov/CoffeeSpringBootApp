@@ -1,6 +1,6 @@
 package com.mvoleg.coffeespringbootapp.service.impl
 
-import com.mvoleg.coffeespringbootapp.dto.MenuCategoryDTO
+import com.mvoleg.coffeespringbootapp.dto.menucategory.MenuCategoryDTO
 import com.mvoleg.coffeespringbootapp.exception.MenuCategoryNotFoundException
 import com.mvoleg.coffeespringbootapp.mapper.MenuCategoryMapper
 import com.mvoleg.coffeespringbootapp.repository.MenuCategoryRepository
@@ -57,15 +57,5 @@ class MenuCategoryServiceImpl(
 
         menuCategoryRepository.deleteById(existingMenuCategory.id)
     }
-
-//    private fun toDTO(menuCategoryEntity: MenuCategoryEntity): MenuCategoryDTO {
-//        return MenuCategoryDTO(menuCategoryEntity.name)
-//    }
-
-//    private fun toEntity(menuCategoryDTO: MenuCategoryDTO): MenuCategoryEntity {
-//        val menuCategoryEntity = MenuCategoryEntity()
-//        menuCategoryEntity.name = menuCategoryDTO.name
-//        return menuCategoryEntity
-//    }
 }
 

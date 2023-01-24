@@ -1,6 +1,4 @@
-package com.mvoleg.coffeespringbootapp.dto;
-
-import java.util.Objects;
+package com.mvoleg.coffeespringbootapp.dto.menucategory;
 
 public class MenuCategoryDTO {
 
