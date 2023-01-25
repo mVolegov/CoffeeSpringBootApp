@@ -35,13 +35,6 @@ public class MenuCategoryMapper {
                 .map(MenuCategoryMapper::toEntity)
                 .collect(Collectors.toList());
 
-//        List<MenuCategoryDTO> menuCategoryDTOs = dtoCollection.orElse(new ArrayList<>());
-//
-//        List<MenuCategoryEntity> menuCategoryEntities = menuCategoryDTOs
-//                .stream()
-//                .map(MenuCategoryMapper::toEntity)
-//                .collect(Collectors.toList());
-
         return menuCategoryEntities;
     }
 }
