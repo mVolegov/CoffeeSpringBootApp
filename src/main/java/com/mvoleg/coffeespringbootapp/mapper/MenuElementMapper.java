@@ -34,9 +34,6 @@ public class MenuElementMapper {
         entity.setSize(dto.getSize());
         entity.setPrice(dto.getPrice());
 
-//        List<MenuCategoryDTO> menuCategoryDTOs = Optional.ofNullable(dto.getCategories()).orElseGet(ArrayList::new);
-//        entity.setCategories(MenuCategoryMapper.toEntityCollection(menuCategoryDTOs));
-
         entity.setCategories(
                 dto.getCategories() == null ?
                 Collections.emptyList() : MenuCategoryMapper.toEntityCollection(dto.getCategories())
