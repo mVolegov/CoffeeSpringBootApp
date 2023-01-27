@@ -1,18 +1,24 @@
 package com.mvoleg.coffeespringbootapp.service.impl
 
 import com.mvoleg.coffeespringbootapp.dto.menucategory.MenuCategoryDTO
+import com.mvoleg.coffeespringbootapp.entity.MenuCategoryEntity
+import com.mvoleg.coffeespringbootapp.exception.MenuCategoryAlreadyAssignedException
 import com.mvoleg.coffeespringbootapp.exception.MenuCategoryNotFoundException
 import com.mvoleg.coffeespringbootapp.mapper.MenuCategoryMapper
 import com.mvoleg.coffeespringbootapp.repository.MenuCategoryRepository
+import com.mvoleg.coffeespringbootapp.repository.MenuElementRepository
 import com.mvoleg.coffeespringbootapp.service.MenuCategoryService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
-class MenuCategoryServiceImpl(
+open class MenuCategoryServiceImpl(
     @Autowired
-    private val menuCategoryRepository: MenuCategoryRepository
+    private val menuCategoryRepository: MenuCategoryRepository,
+    @Autowired
+    private val menuElementRepository: MenuElementRepository
 ): MenuCategoryService {
 
     override fun getAll(): List<MenuCategoryDTO> {
@@ -39,6 +45,8 @@ class MenuCategoryServiceImpl(
         return MenuCategoryMapper.toDTO(savedMenuCategoryEntity)
     }
 
+
+    @Transactional
     override fun update(id: Long, dto: MenuCategoryDTO): MenuCategoryDTO {
         val existingMenuCategory = menuCategoryRepository
             .findByIdOrNull(id)
@@ -51,11 +59,20 @@ class MenuCategoryServiceImpl(
         return MenuCategoryMapper.toDTO(updatedMenuCategoryEntity)
     }
 
+    @Transactional
     override fun delete(id: Long) {
-        val existingMenuCategory = menuCategoryRepository.findByIdOrNull(id)
+        val menuCategoryEntity = menuCategoryRepository
+            .findByIdOrNull(id)
             ?: throw MenuCategoryNotFoundException(id)
 
-        menuCategoryRepository.deleteById(existingMenuCategory.id)
+        val allMenuCategoryEntities: List<MenuCategoryEntity> = menuElementRepository
+            .findAll()
+            .flatMap { it.categories }
+
+        if (allMenuCategoryEntities.contains(menuCategoryEntity)) {
+            throw MenuCategoryAlreadyAssignedException(id)
+        }
+
+        menuCategoryRepository.deleteById(id)
     }
 }
-
