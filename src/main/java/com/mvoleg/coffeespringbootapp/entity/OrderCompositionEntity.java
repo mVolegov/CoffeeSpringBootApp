@@ -10,15 +10,15 @@ public class OrderCompositionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "menuelement_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "menuelement_id", referencedColumnName = "id", nullable = false)
     private MenuElementEntity menuElement;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     private OrderEntity order;
 
-    @Column(name = "menuelement_amount")
+    @Column(name = "menuelement_amount", nullable = false)
     private Integer menuElementAmount;
 
     @Column(name = "sugar_amount")

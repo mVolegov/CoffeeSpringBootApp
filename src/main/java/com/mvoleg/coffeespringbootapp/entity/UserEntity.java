@@ -20,7 +20,7 @@ public class UserEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_has_role",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),

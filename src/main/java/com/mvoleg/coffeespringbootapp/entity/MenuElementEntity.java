@@ -14,7 +14,7 @@ public class MenuElementEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @Column(name = "description")
@@ -38,15 +38,7 @@ public class MenuElementEntity {
     @Column(name = "price")
     private BigDecimal price;
 
-    @ManyToMany(
-            fetch = FetchType.EAGER,
-            cascade = {
-                CascadeType.DETACH,
-                CascadeType.MERGE,
-                CascadeType.PERSIST,
-                CascadeType.REFRESH
-            }
-    )
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "menuelement_has_category",
             joinColumns = @JoinColumn(name = "menuelement_id", referencedColumnName = "id"),
