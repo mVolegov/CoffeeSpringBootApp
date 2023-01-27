@@ -2,6 +2,7 @@ package com.mvoleg.coffeespringbootapp.restcontroller;
 
 import com.mvoleg.coffeespringbootapp.dto.menuelement.MenuElementCategoryDTO;
 import com.mvoleg.coffeespringbootapp.dto.menuelement.MenuElementDTO;
+import com.mvoleg.coffeespringbootapp.dto.menuelement.MenuElementUpdateDTO;
 import com.mvoleg.coffeespringbootapp.service.MenuElementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,7 +34,7 @@ public class MenuElementRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MenuElementDTO> update(@PathVariable("id") Long id, @RequestBody MenuElementDTO dto) {
+    public ResponseEntity<MenuElementDTO> update(@PathVariable("id") Long id, @RequestBody MenuElementUpdateDTO dto) {
         MenuElementDTO updatedMenuElementDTO = menuElementService.update(id, dto);
         return new ResponseEntity<>(updatedMenuElementDTO, HttpStatus.OK);
     }

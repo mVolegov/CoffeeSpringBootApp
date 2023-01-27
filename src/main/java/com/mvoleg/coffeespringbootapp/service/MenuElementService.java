@@ -2,6 +2,7 @@ package com.mvoleg.coffeespringbootapp.service;
 
 import com.mvoleg.coffeespringbootapp.dto.menuelement.MenuElementCategoryDTO;
 import com.mvoleg.coffeespringbootapp.dto.menuelement.MenuElementDTO;
+import com.mvoleg.coffeespringbootapp.dto.menuelement.MenuElementUpdateDTO;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface MenuElementService {
 
     MenuElementDTO assignCategory(MenuElementCategoryDTO dto);
 
-    MenuElementDTO update(Long id, MenuElementDTO dto);
+    MenuElementDTO update(Long id, MenuElementUpdateDTO dto);
 
     void delete(Long id);
 }
