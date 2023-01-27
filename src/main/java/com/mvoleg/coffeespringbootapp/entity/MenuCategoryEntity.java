@@ -3,8 +3,8 @@ package com.mvoleg.coffeespringbootapp.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "menu_category")
@@ -19,7 +19,7 @@ public class MenuCategoryEntity {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)
-    private List<MenuElementEntity> menuElementEntities = new ArrayList<>();
+    private Set<MenuElementEntity> menuElementEntities = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -37,11 +37,11 @@ public class MenuCategoryEntity {
         this.name = name;
     }
 
-    public List<MenuElementEntity> getMenuElementEntities() {
+    public Set<MenuElementEntity> getMenuElementEntities() {
         return menuElementEntities;
     }
 
-    public void setMenuElementEntities(List<MenuElementEntity> menuElementEntities) {
+    public void setMenuElementEntities(Set<MenuElementEntity> menuElementEntities) {
         this.menuElementEntities = menuElementEntities;
     }
 }

@@ -3,8 +3,8 @@ package com.mvoleg.coffeespringbootapp.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "menu_element")
@@ -44,7 +44,7 @@ public class MenuElementEntity {
             joinColumns = @JoinColumn(name = "menuelement_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id")
     )
-    private List<MenuCategoryEntity> categories = new ArrayList<>();
+    private Set<MenuCategoryEntity> categories = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -118,11 +118,11 @@ public class MenuElementEntity {
         this.price = price;
     }
 
-    public List<MenuCategoryEntity> getCategories() {
+    public Set<MenuCategoryEntity> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<MenuCategoryEntity> categories) {
+    public void setCategories(Set<MenuCategoryEntity> categories) {
         this.categories = categories;
     }
 }
