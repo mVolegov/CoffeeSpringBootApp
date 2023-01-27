@@ -45,13 +45,13 @@ public class MenuElementRestController {
         return new ResponseEntity<>("Menu element with id " + id + " was deleted", HttpStatus.OK);
     }
 
-    @PutMapping("/assign-category")
+    @PutMapping("/category")
     public ResponseEntity<MenuElementDTO> assignCategory(@RequestBody MenuElementCategoryDTO dto) {
         MenuElementDTO menuElementDTO = menuElementService.assignCategory(dto);
         return new ResponseEntity<>(menuElementDTO, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete-category")
+    @DeleteMapping("/category")
     public ResponseEntity<MenuElementDTO> deleteCategory(@RequestBody MenuElementCategoryDTO dto) {
         MenuElementDTO menuElementDTO = menuElementService.deleteCategory(dto);
         return new ResponseEntity<>(menuElementDTO, HttpStatus.OK);
