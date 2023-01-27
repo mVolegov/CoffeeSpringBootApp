@@ -2,7 +2,7 @@ package com.mvoleg.coffeespringbootapp.exception
 
 import org.springframework.http.HttpStatus
 
-class MenuCategoryAlreadyAssignedToMenuElementException(menuCategoryId: Long): BaseException(
+class MenuCategoryAlreadyAssignedException(menuCategoryId: Long): BaseException(
     HttpStatus.BAD_REQUEST,
     ApiError(
         errorCode = "menu.category.already.assigned",

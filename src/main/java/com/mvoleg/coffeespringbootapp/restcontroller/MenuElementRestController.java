@@ -39,15 +39,21 @@ public class MenuElementRestController {
         return new ResponseEntity<>(updatedMenuElementDTO, HttpStatus.OK);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable("id") Long id) {
+        menuElementService.delete(id);
+        return new ResponseEntity<>("Menu element with id " + id + " was deleted", HttpStatus.OK);
+    }
+
     @PutMapping("/assign-category")
     public ResponseEntity<MenuElementDTO> assignCategory(@RequestBody MenuElementCategoryDTO dto) {
         MenuElementDTO menuElementDTO = menuElementService.assignCategory(dto);
         return new ResponseEntity<>(menuElementDTO, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable("id") Long id) {
-        menuElementService.delete(id);
-        return new ResponseEntity<>("Menu element with id " + id + " was deleted", HttpStatus.OK);
+    @DeleteMapping("/delete-category")
+    public ResponseEntity<MenuElementDTO> deleteCategory(@RequestBody MenuElementCategoryDTO dto) {
+        MenuElementDTO menuElementDTO = menuElementService.deleteCategory(dto);
+        return new ResponseEntity<>(menuElementDTO, HttpStatus.OK);
     }
 }

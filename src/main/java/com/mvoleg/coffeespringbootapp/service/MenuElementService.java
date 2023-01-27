@@ -14,9 +14,11 @@ public interface MenuElementService {
 
     MenuElementDTO create(MenuElementDTO dto);
 
-    MenuElementDTO assignCategory(MenuElementCategoryDTO dto);
-
     MenuElementDTO update(Long id, MenuElementUpdateDTO dto);
 
     void delete(Long id);
+
+    MenuElementDTO assignCategory(MenuElementCategoryDTO dto);
+
+    MenuElementDTO deleteCategory(MenuElementCategoryDTO dto);
 }
