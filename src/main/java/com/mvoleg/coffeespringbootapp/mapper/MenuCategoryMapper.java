@@ -3,7 +3,7 @@ package com.mvoleg.coffeespringbootapp.mapper;
 import com.mvoleg.coffeespringbootapp.dto.menucategory.MenuCategoryDTO;
 import com.mvoleg.coffeespringbootapp.entity.MenuCategoryEntity;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MenuCategoryMapper {
@@ -12,11 +12,11 @@ public class MenuCategoryMapper {
         return new MenuCategoryDTO(entity.getId(), entity.getName());
     }
 
-    public static List<MenuCategoryDTO> toDTOCollection(List<MenuCategoryEntity> entityCollection) {
-        List<MenuCategoryDTO> menuCategoryDTOs = entityCollection
+    public static Set<MenuCategoryDTO> toDTOCollection(Set<MenuCategoryEntity> entityCollection) {
+        Set<MenuCategoryDTO> menuCategoryDTOs = entityCollection
                 .stream()
                 .map(MenuCategoryMapper::toDTO)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
 
         return menuCategoryDTOs;
     }
@@ -29,11 +29,11 @@ public class MenuCategoryMapper {
         return menuCategoryEntity;
     }
 
-    public static List<MenuCategoryEntity> toEntityCollection(List<MenuCategoryDTO> dtoCollection) {
-        List<MenuCategoryEntity> menuCategoryEntities = dtoCollection
+    public static Set<MenuCategoryEntity> toEntityCollection(Set<MenuCategoryDTO> dtoCollection) {
+        Set<MenuCategoryEntity> menuCategoryEntities = dtoCollection
                 .stream()
                 .map(MenuCategoryMapper::toEntity)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
 
         return menuCategoryEntities;
     }

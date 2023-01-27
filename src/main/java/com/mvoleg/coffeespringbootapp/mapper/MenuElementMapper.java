@@ -1,10 +1,11 @@
 package com.mvoleg.coffeespringbootapp.mapper;
 
 import com.mvoleg.coffeespringbootapp.dto.menuelement.MenuElementDTO;
+import com.mvoleg.coffeespringbootapp.dto.menuelement.MenuElementUpdateDTO;
 import com.mvoleg.coffeespringbootapp.entity.MenuElementEntity;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 
 public class MenuElementMapper {
 
@@ -19,11 +20,11 @@ public class MenuElementMapper {
                 entity.getCarbohydrates(),
                 entity.getSize(),
                 entity.getPrice(),
-                new ArrayList<>(MenuCategoryMapper.toDTOCollection(entity.getCategories()))
+                new HashSet<>(MenuCategoryMapper.toDTOCollection(entity.getCategories()))
         );
     }
 
-    public static MenuElementEntity toEntity(MenuElementDTO dto) {
+    public static MenuElementEntity fromMenuElementDTOtoEntity(MenuElementDTO dto) {
         MenuElementEntity entity = new MenuElementEntity();
         entity.setName(dto.getName());
         entity.setDescription(dto.getDescription());
@@ -36,8 +37,22 @@ public class MenuElementMapper {
 
         entity.setCategories(
                 dto.getCategories() == null ?
-                Collections.emptyList() : MenuCategoryMapper.toEntityCollection(dto.getCategories())
+                Collections.emptySet() : MenuCategoryMapper.toEntityCollection(dto.getCategories())
         );
+
+        return entity;
+    }
+
+    public static MenuElementEntity fromMenuElementUpdateDTOtoEntity(MenuElementUpdateDTO dto) {
+        MenuElementEntity entity = new MenuElementEntity();
+        entity.setName(dto.getName());
+        entity.setDescription(dto.getDescription());
+        entity.setKcal(dto.getKcal());
+        entity.setProteins(dto.getProteins());
+        entity.setFats(dto.getFats());
+        entity.setCarbohydrates(dto.getCarbohydrates());
+        entity.setSize(dto.getSize());
+        entity.setPrice(dto.getPrice());
 
         return entity;
     }

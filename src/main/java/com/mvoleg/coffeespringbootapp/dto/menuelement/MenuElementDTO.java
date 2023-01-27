@@ -3,7 +3,7 @@ package com.mvoleg.coffeespringbootapp.dto.menuelement;
 import com.mvoleg.coffeespringbootapp.dto.menucategory.MenuCategoryDTO;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Set;
 
 public class MenuElementDTO {
 
@@ -16,7 +16,7 @@ public class MenuElementDTO {
     private Double carbohydrates;
     private Double size;
     private BigDecimal price;
-    private List<MenuCategoryDTO> categories;
+    private Set<MenuCategoryDTO> categories;
 
     public MenuElementDTO() {}
 
@@ -28,7 +28,7 @@ public class MenuElementDTO {
                           Double carbohydrates,
                           Double size,
                           BigDecimal price,
-                          List<MenuCategoryDTO> categories) {
+                          Set<MenuCategoryDTO> categories) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -113,11 +113,11 @@ public class MenuElementDTO {
         this.price = price;
     }
 
-    public List<MenuCategoryDTO> getCategories() {
+    public Set<MenuCategoryDTO> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<MenuCategoryDTO> categories) {
+    public void setCategories(Set<MenuCategoryDTO> categories) {
         this.categories = categories;
     }
 }

@@ -2,6 +2,7 @@ package com.mvoleg.coffeespringbootapp.service.impl;
 
 import com.mvoleg.coffeespringbootapp.dto.menuelement.MenuElementCategoryDTO;
 import com.mvoleg.coffeespringbootapp.dto.menuelement.MenuElementDTO;
+import com.mvoleg.coffeespringbootapp.dto.menuelement.MenuElementUpdateDTO;
 import com.mvoleg.coffeespringbootapp.entity.MenuCategoryEntity;
 import com.mvoleg.coffeespringbootapp.entity.MenuElementEntity;
 import com.mvoleg.coffeespringbootapp.exception.MenuCategoryAlreadyAssignedToMenuElementException;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,7 +51,7 @@ public class MenuElementServiceImpl implements MenuElementService {
 
     @Override
     public MenuElementDTO create(MenuElementDTO dto) {
-        MenuElementEntity menuElementEntity = menuElementRepository.save(MenuElementMapper.toEntity(dto));
+        MenuElementEntity menuElementEntity = menuElementRepository.save(MenuElementMapper.fromMenuElementDTOtoEntity(dto));
 
         return MenuElementMapper.toDTO(menuElementEntity);
     }
@@ -64,7 +66,7 @@ public class MenuElementServiceImpl implements MenuElementService {
                 .findById(dto.getMenuCategoryId())
                 .orElseThrow(() -> new MenuCategoryNotFoundException(dto.getMenuCategoryId()));
 
-        List<MenuCategoryEntity> categories = menuElementEntity.getCategories();
+        Set<MenuCategoryEntity> categories = menuElementEntity.getCategories();
 
         if (categories.contains(menuCategoryEntity)) {
             throw new MenuCategoryAlreadyAssignedToMenuElementException(dto.getMenuCategoryId());
@@ -79,13 +81,14 @@ public class MenuElementServiceImpl implements MenuElementService {
     }
 
     @Override
-    public MenuElementDTO update(Long id, MenuElementDTO dto) {
+    public MenuElementDTO update(Long id, MenuElementUpdateDTO dto) {
         MenuElementEntity menuElementEntityToUpdate = menuElementRepository
                 .findById(id)
                 .orElseThrow(() -> new MenuElementNotFoundException(id));
 
-        MenuElementEntity menuElementEntity = MenuElementMapper.toEntity(dto);
+        MenuElementEntity menuElementEntity = MenuElementMapper.fromMenuElementUpdateDTOtoEntity(dto);
         menuElementEntity.setId(id);
+        menuElementEntity.setCategories(menuElementEntityToUpdate.getCategories());
 
         MenuElementEntity updatedMenuElementEntity = menuElementRepository.save(menuElementEntity);
 
