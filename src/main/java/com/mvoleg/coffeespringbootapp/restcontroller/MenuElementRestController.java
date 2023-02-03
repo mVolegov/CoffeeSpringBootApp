@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/menu-elements")
+@RequestMapping("/api/v1/menu-elements")
 public class MenuElementRestController {
 
     private final MenuElementService menuElementService;
