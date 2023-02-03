@@ -3,7 +3,6 @@ package com.mvoleg.coffeespringbootapp.dto.order;
 public class MenuElementInOrderDTO {
 
     private Long id;
-    private String name;
     private Integer amount;
     private Integer sugarAmount;
     private Integer milkAmount;
@@ -11,9 +10,8 @@ public class MenuElementInOrderDTO {
     public MenuElementInOrderDTO() {
     }
 
-    public MenuElementInOrderDTO(Long id, String name, Integer amount, Integer sugarAmount, Integer milkAmount) {
+    public MenuElementInOrderDTO(Long id, Integer amount, Integer sugarAmount, Integer milkAmount) {
         this.id = id;
-        this.name = name;
         this.amount = amount;
         this.sugarAmount = sugarAmount;
         this.milkAmount = milkAmount;
@@ -25,14 +23,6 @@ public class MenuElementInOrderDTO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Integer getAmount() {
