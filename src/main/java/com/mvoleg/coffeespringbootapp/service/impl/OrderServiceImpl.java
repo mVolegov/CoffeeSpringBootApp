@@ -7,15 +7,16 @@ import com.mvoleg.coffeespringbootapp.entity.OrderCompositionEntity;
 import com.mvoleg.coffeespringbootapp.entity.OrderEntity;
 import com.mvoleg.coffeespringbootapp.entity.UserEntity;
 import com.mvoleg.coffeespringbootapp.exception.MenuElementNotFoundException;
+import com.mvoleg.coffeespringbootapp.exception.TotalPriceOfCartDoesNotMatchException;
 import com.mvoleg.coffeespringbootapp.exception.UserNotFoundException;
 import com.mvoleg.coffeespringbootapp.repository.MenuElementRepository;
 import com.mvoleg.coffeespringbootapp.repository.OrderCompositionRepository;
 import com.mvoleg.coffeespringbootapp.repository.OrderRepository;
 import com.mvoleg.coffeespringbootapp.repository.UserRepository;
 import com.mvoleg.coffeespringbootapp.service.OrderService;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -78,7 +79,6 @@ public class OrderServiceImpl implements OrderService {
         return userOrderDTOs;
     }
 
-    // TODO Пересчитывать цену корзины (если не совпадает - кидать исключение)
     @Transactional
     @Override
     public OrderEntity saveNewOrder(UserOrderDTO userOrderDTO) {
@@ -117,6 +117,20 @@ public class OrderServiceImpl implements OrderService {
         }
 
         BigDecimal receivedTotalOrderPrice = userOrderDTO.getTotalOrderPrice();
+        BigDecimal expectedTotalOrderPrice = BigDecimal.ZERO;
+        for (OrderCompositionEntity orderCompositionEntity : menuElementsInOrderEntities) {
+            BigDecimal menuElementPrice = orderCompositionEntity.getMenuElement().getPrice();
+            BigDecimal menuElementAmount = BigDecimal.valueOf(orderCompositionEntity.getMenuElementAmount());
+
+            expectedTotalOrderPrice = expectedTotalOrderPrice.add(menuElementPrice.multiply(menuElementAmount));
+        }
+
+        if (receivedTotalOrderPrice.compareTo(expectedTotalOrderPrice) != 0) {
+            throw new TotalPriceOfCartDoesNotMatchException(
+                    expectedTotalOrderPrice.doubleValue(),
+                    receivedTotalOrderPrice.doubleValue()
+            );
+        }
 
         orderToSave.setTotalOrderPrice(receivedTotalOrderPrice);
         orderToSave.setMenuElementsInOrder(menuElementsInOrderEntities);
