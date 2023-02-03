@@ -13,10 +13,11 @@ import com.mvoleg.coffeespringbootapp.repository.OrderCompositionRepository;
 import com.mvoleg.coffeespringbootapp.repository.OrderRepository;
 import com.mvoleg.coffeespringbootapp.repository.UserRepository;
 import com.mvoleg.coffeespringbootapp.service.OrderService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,14 +54,12 @@ public class OrderServiceImpl implements OrderService {
 
             for (OrderCompositionEntity menuElementInOrder : menuElementsInOrder) {
                 Long menuElementId = menuElementInOrder.getMenuElement().getId();
-                String menuElementName = menuElementInOrder.getMenuElement().getName();
                 Integer menuElementAmount = menuElementInOrder.getMenuElementAmount();
                 Integer sugarAmount = menuElementInOrder.getSugarAmount();
                 Integer milkAmount = menuElementInOrder.getMilkAmount();
 
                 menuElementInOrderDTOs.add(new MenuElementInOrderDTO(
                         menuElementId,
-                        menuElementName,
                         menuElementAmount,
                         sugarAmount,
                         milkAmount
@@ -79,6 +78,7 @@ public class OrderServiceImpl implements OrderService {
         return userOrderDTOs;
     }
 
+    // TODO Пересчитывать цену корзины (если не совпадает - кидать исключение)
     @Transactional
     @Override
     public OrderEntity saveNewOrder(UserOrderDTO userOrderDTO) {
@@ -94,7 +94,7 @@ public class OrderServiceImpl implements OrderService {
 
         List<MenuElementInOrderDTO> menuElementsInOrderDTOs = userOrderDTO.getMenuElementsInOrder();
 
-        List<OrderCompositionEntity> menuElementsInOrder = new ArrayList<>();
+        List<OrderCompositionEntity> menuElementsInOrderEntities = new ArrayList<>();
 
         for (MenuElementInOrderDTO menuElementInOrderDTO : menuElementsInOrderDTOs) {
             Long id = menuElementInOrderDTO.getId();
@@ -106,7 +106,7 @@ public class OrderServiceImpl implements OrderService {
                     .findById(id)
                     .orElseThrow(() -> new MenuElementNotFoundException(id));
 
-            menuElementsInOrder.add(new OrderCompositionEntity(
+            menuElementsInOrderEntities.add(new OrderCompositionEntity(
                     menuElementEntity,
                     amount,
                     orderToSave,
@@ -116,10 +116,10 @@ public class OrderServiceImpl implements OrderService {
             );
         }
 
-        orderCompositionRepository.saveAll(menuElementsInOrder);
+        BigDecimal receivedTotalOrderPrice = userOrderDTO.getTotalOrderPrice();
 
-        orderToSave.setTotalOrderPrice(userOrderDTO.getTotalOrderPrice());
-        orderToSave.setMenuElementsInOrder(menuElementsInOrder);
+        orderToSave.setTotalOrderPrice(receivedTotalOrderPrice);
+        orderToSave.setMenuElementsInOrder(menuElementsInOrderEntities);
 
         return orderRepository.save(orderToSave);
     }
