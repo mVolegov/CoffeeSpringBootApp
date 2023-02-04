@@ -1,17 +1,17 @@
 package com.mvoleg.coffeespringbootapp.service.impl;
 
-import com.mvoleg.coffeespringbootapp.dto.menuelement.MenuElementCategoryDTO;
-import com.mvoleg.coffeespringbootapp.dto.menuelement.MenuElementDTO;
-import com.mvoleg.coffeespringbootapp.dto.menuelement.MenuElementUpdateDTO;
-import com.mvoleg.coffeespringbootapp.entity.MenuCategoryEntity;
-import com.mvoleg.coffeespringbootapp.entity.MenuElementEntity;
+import com.mvoleg.coffeespringbootapp.api.dto.menuelement.MenuElementCategoryDTO;
+import com.mvoleg.coffeespringbootapp.api.dto.menuelement.MenuElementDTO;
+import com.mvoleg.coffeespringbootapp.api.dto.menuelement.MenuElementUpdateDTO;
+import com.mvoleg.coffeespringbootapp.model.entity.MenuCategoryEntity;
+import com.mvoleg.coffeespringbootapp.model.entity.MenuElementEntity;
 import com.mvoleg.coffeespringbootapp.exception.MenuCategoryAlreadyAssignedException;
 import com.mvoleg.coffeespringbootapp.exception.MenuCategoryNotAssignedException;
 import com.mvoleg.coffeespringbootapp.exception.MenuCategoryNotFoundException;
 import com.mvoleg.coffeespringbootapp.exception.MenuElementNotFoundException;
-import com.mvoleg.coffeespringbootapp.mapper.MenuElementMapper;
-import com.mvoleg.coffeespringbootapp.repository.MenuCategoryRepository;
-import com.mvoleg.coffeespringbootapp.repository.MenuElementRepository;
+import com.mvoleg.coffeespringbootapp.api.mapper.MenuElementMapper;
+import com.mvoleg.coffeespringbootapp.model.repository.MenuCategoryRepository;
+import com.mvoleg.coffeespringbootapp.model.repository.MenuElementRepository;
 import com.mvoleg.coffeespringbootapp.service.MenuElementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

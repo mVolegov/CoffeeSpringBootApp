@@ -1,8 +1,8 @@
 package com.mvoleg.coffeespringbootapp.security;
 
-import com.mvoleg.coffeespringbootapp.entity.RoleEntity;
-import com.mvoleg.coffeespringbootapp.entity.UserEntity;
-import com.mvoleg.coffeespringbootapp.repository.UserRepository;
+import com.mvoleg.coffeespringbootapp.model.entity.RoleEntity;
+import com.mvoleg.coffeespringbootapp.model.entity.UserEntity;
+import com.mvoleg.coffeespringbootapp.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

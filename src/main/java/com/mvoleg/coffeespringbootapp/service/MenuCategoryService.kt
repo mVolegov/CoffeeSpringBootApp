@@ -1,6 +1,6 @@
 package com.mvoleg.coffeespringbootapp.service
 
-import com.mvoleg.coffeespringbootapp.dto.menucategory.MenuCategoryDTO
+import com.mvoleg.coffeespringbootapp.api.dto.menucategory.MenuCategoryDTO
 
 interface MenuCategoryService {
 

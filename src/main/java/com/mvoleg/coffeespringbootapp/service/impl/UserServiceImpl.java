@@ -1,14 +1,14 @@
 package com.mvoleg.coffeespringbootapp.service.impl;
 
-import com.mvoleg.coffeespringbootapp.dto.auth.AuthResponseDTO;
-import com.mvoleg.coffeespringbootapp.dto.auth.LoginDTO;
-import com.mvoleg.coffeespringbootapp.dto.auth.RegisterDTO;
-import com.mvoleg.coffeespringbootapp.entity.RoleEntity;
-import com.mvoleg.coffeespringbootapp.entity.Status;
-import com.mvoleg.coffeespringbootapp.entity.UserEntity;
+import com.mvoleg.coffeespringbootapp.api.dto.auth.AuthResponseDTO;
+import com.mvoleg.coffeespringbootapp.api.dto.auth.LoginDTO;
+import com.mvoleg.coffeespringbootapp.api.dto.auth.RegisterDTO;
+import com.mvoleg.coffeespringbootapp.model.entity.RoleEntity;
+import com.mvoleg.coffeespringbootapp.model.entity.Status;
+import com.mvoleg.coffeespringbootapp.model.entity.UserEntity;
 import com.mvoleg.coffeespringbootapp.exception.UsernameIsTakenException;
-import com.mvoleg.coffeespringbootapp.repository.RoleRepository;
-import com.mvoleg.coffeespringbootapp.repository.UserRepository;
+import com.mvoleg.coffeespringbootapp.model.repository.RoleRepository;
+import com.mvoleg.coffeespringbootapp.model.repository.UserRepository;
 import com.mvoleg.coffeespringbootapp.security.jwt.JwtTokenProvider;
 import com.mvoleg.coffeespringbootapp.service.UserService;
 import org.springframework.security.authentication.AuthenticationManager;
