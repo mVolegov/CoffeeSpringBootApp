@@ -2,10 +2,8 @@ package com.mvoleg.coffeespringbootapp.api.restcontroller
 
 import com.mvoleg.coffeespringbootapp.api.dto.menucategory.MenuCategoryDTO
 import com.mvoleg.coffeespringbootapp.service.MenuCategoryService
-import io.swagger.v3.oas.annotations.OpenAPIDefinition
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
-import io.swagger.v3.oas.annotations.info.Info
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
