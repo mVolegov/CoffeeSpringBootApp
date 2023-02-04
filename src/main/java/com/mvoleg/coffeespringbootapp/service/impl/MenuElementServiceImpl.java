@@ -10,8 +10,8 @@ import com.mvoleg.coffeespringbootapp.exception.MenuCategoryNotAssignedException
 import com.mvoleg.coffeespringbootapp.exception.MenuCategoryNotFoundException;
 import com.mvoleg.coffeespringbootapp.exception.MenuElementNotFoundException;
 import com.mvoleg.coffeespringbootapp.api.mapper.MenuElementMapper;
-import com.mvoleg.coffeespringbootapp.persistence.repository.MenuCategoryRepository;
-import com.mvoleg.coffeespringbootapp.persistence.repository.MenuElementRepository;
+import com.mvoleg.coffeespringbootapp.persistence.dao.MenuCategoryRepository;
+import com.mvoleg.coffeespringbootapp.persistence.dao.MenuElementRepository;
 import com.mvoleg.coffeespringbootapp.service.MenuElementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

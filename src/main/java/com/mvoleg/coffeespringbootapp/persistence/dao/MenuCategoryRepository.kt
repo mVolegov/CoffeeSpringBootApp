@@ -1,4 +1,4 @@
-package com.mvoleg.coffeespringbootapp.persistence.repository
+package com.mvoleg.coffeespringbootapp.persistence.dao
 
 import com.mvoleg.coffeespringbootapp.persistence.model.MenuCategoryEntity
 import org.springframework.data.jpa.repository.JpaRepository

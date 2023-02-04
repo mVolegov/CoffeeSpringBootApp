@@ -2,7 +2,7 @@ package com.mvoleg.coffeespringbootapp.repository;
 
 import com.mvoleg.coffeespringbootapp.persistence.model.Status;
 import com.mvoleg.coffeespringbootapp.persistence.model.UserEntity;
-import com.mvoleg.coffeespringbootapp.persistence.repository.UserRepository;
+import com.mvoleg.coffeespringbootapp.persistence.dao.UserRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

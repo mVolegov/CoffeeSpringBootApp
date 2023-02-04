@@ -2,7 +2,7 @@ package com.mvoleg.coffeespringbootapp.security;
 
 import com.mvoleg.coffeespringbootapp.persistence.model.RoleEntity;
 import com.mvoleg.coffeespringbootapp.persistence.model.UserEntity;
-import com.mvoleg.coffeespringbootapp.persistence.repository.UserRepository;
+import com.mvoleg.coffeespringbootapp.persistence.dao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

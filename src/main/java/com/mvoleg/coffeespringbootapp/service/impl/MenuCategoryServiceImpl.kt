@@ -5,8 +5,8 @@ import com.mvoleg.coffeespringbootapp.persistence.model.MenuCategoryEntity
 import com.mvoleg.coffeespringbootapp.exception.MenuCategoryAlreadyAssignedException
 import com.mvoleg.coffeespringbootapp.exception.MenuCategoryNotFoundException
 import com.mvoleg.coffeespringbootapp.api.mapper.MenuCategoryMapper
-import com.mvoleg.coffeespringbootapp.persistence.repository.MenuCategoryRepository
-import com.mvoleg.coffeespringbootapp.persistence.repository.MenuElementRepository
+import com.mvoleg.coffeespringbootapp.persistence.dao.MenuCategoryRepository
+import com.mvoleg.coffeespringbootapp.persistence.dao.MenuElementRepository
 import com.mvoleg.coffeespringbootapp.service.MenuCategoryService
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
