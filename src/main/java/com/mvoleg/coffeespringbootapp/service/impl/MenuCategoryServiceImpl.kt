@@ -8,16 +8,13 @@ import com.mvoleg.coffeespringbootapp.mapper.MenuCategoryMapper
 import com.mvoleg.coffeespringbootapp.repository.MenuCategoryRepository
 import com.mvoleg.coffeespringbootapp.repository.MenuElementRepository
 import com.mvoleg.coffeespringbootapp.service.MenuCategoryService
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 open class MenuCategoryServiceImpl(
-    @Autowired
     private val menuCategoryRepository: MenuCategoryRepository,
-    @Autowired
     private val menuElementRepository: MenuElementRepository
 ): MenuCategoryService {
 
@@ -44,7 +41,6 @@ open class MenuCategoryServiceImpl(
 
         return MenuCategoryMapper.toDTO(savedMenuCategoryEntity)
     }
-
 
     @Transactional
     override fun update(id: Long, dto: MenuCategoryDTO): MenuCategoryDTO {
