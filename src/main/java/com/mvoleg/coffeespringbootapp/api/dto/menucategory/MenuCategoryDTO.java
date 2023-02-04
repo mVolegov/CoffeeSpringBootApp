@@ -1,8 +1,14 @@
 package com.mvoleg.coffeespringbootapp.api.dto.menucategory;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "Информация о категориях меню")
 public class MenuCategoryDTO {
 
+    @Schema(description = "Идентификатор категории меню")
     private Long id;
+
+    @Schema(description = "Название категории меню")
     private String name;
 
     public MenuCategoryDTO() {}
