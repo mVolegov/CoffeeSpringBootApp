@@ -2,7 +2,7 @@ package com.mvoleg.coffeespringbootapp.api.mapper;
 
 import com.mvoleg.coffeespringbootapp.api.dto.menuelement.MenuElementDTO;
 import com.mvoleg.coffeespringbootapp.api.dto.menuelement.MenuElementUpdateDTO;
-import com.mvoleg.coffeespringbootapp.model.entity.MenuElementEntity;
+import com.mvoleg.coffeespringbootapp.persistence.model.MenuElementEntity;
 
 import java.util.Collections;
 import java.util.HashSet;

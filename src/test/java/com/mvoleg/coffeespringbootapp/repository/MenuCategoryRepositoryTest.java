@@ -1,7 +1,7 @@
 package com.mvoleg.coffeespringbootapp.repository;
 
-import com.mvoleg.coffeespringbootapp.model.entity.MenuCategoryEntity;
-import com.mvoleg.coffeespringbootapp.model.repository.MenuCategoryRepository;
+import com.mvoleg.coffeespringbootapp.persistence.model.MenuCategoryEntity;
+import com.mvoleg.coffeespringbootapp.persistence.repository.MenuCategoryRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

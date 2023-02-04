@@ -1,4 +1,4 @@
-package com.mvoleg.coffeespringbootapp.model.entity;
+package com.mvoleg.coffeespringbootapp.persistence.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

@@ -1,7 +1,7 @@
 package com.mvoleg.coffeespringbootapp.api.mapper;
 
 import com.mvoleg.coffeespringbootapp.api.dto.menucategory.MenuCategoryDTO;
-import com.mvoleg.coffeespringbootapp.model.entity.MenuCategoryEntity;
+import com.mvoleg.coffeespringbootapp.persistence.model.MenuCategoryEntity;
 
 import java.util.Set;
 import java.util.stream.Collectors;

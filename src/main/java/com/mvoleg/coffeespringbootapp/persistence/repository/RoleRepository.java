@@ -1,6 +1,6 @@
-package com.mvoleg.coffeespringbootapp.model.repository;
+package com.mvoleg.coffeespringbootapp.persistence.repository;
 
-import com.mvoleg.coffeespringbootapp.model.entity.RoleEntity;
+import com.mvoleg.coffeespringbootapp.persistence.model.RoleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

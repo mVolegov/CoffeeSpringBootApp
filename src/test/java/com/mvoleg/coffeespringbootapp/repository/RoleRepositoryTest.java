@@ -1,7 +1,7 @@
 package com.mvoleg.coffeespringbootapp.repository;
 
-import com.mvoleg.coffeespringbootapp.model.entity.RoleEntity;
-import com.mvoleg.coffeespringbootapp.model.repository.RoleRepository;
+import com.mvoleg.coffeespringbootapp.persistence.model.RoleEntity;
+import com.mvoleg.coffeespringbootapp.persistence.repository.RoleRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

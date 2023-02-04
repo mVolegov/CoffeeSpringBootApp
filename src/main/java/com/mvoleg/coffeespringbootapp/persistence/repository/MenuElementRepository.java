@@ -1,6 +1,6 @@
-package com.mvoleg.coffeespringbootapp.model.repository;
+package com.mvoleg.coffeespringbootapp.persistence.repository;
 
-import com.mvoleg.coffeespringbootapp.model.entity.MenuElementEntity;
+import com.mvoleg.coffeespringbootapp.persistence.model.MenuElementEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

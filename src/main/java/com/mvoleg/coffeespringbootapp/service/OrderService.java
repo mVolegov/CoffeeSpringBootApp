@@ -1,7 +1,7 @@
 package com.mvoleg.coffeespringbootapp.service;
 
 import com.mvoleg.coffeespringbootapp.api.dto.order.UserOrderDTO;
-import com.mvoleg.coffeespringbootapp.model.entity.OrderEntity;
+import com.mvoleg.coffeespringbootapp.persistence.model.OrderEntity;
 
 import java.util.List;
 
