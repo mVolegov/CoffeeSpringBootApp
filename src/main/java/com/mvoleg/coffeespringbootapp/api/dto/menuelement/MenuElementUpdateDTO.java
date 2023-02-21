@@ -1,6 +1,7 @@
 package com.mvoleg.coffeespringbootapp.api.dto.menuelement;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class MenuElementUpdateDTO {
 
@@ -32,6 +33,28 @@ public class MenuElementUpdateDTO {
         this.carbohydrates = carbohydrates;
         this.size = size;
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MenuElementUpdateDTO that = (MenuElementUpdateDTO) o;
+
+        return Objects.equals(name, that.name)
+                && Objects.equals(description, that.description)
+                && Objects.equals(kcal, that.kcal)
+                && Objects.equals(proteins, that.proteins)
+                && Objects.equals(fats, that.fats)
+                && Objects.equals(carbohydrates, that.carbohydrates)
+                && Objects.equals(size, that.size)
+                && Objects.equals(price, that.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, description, kcal, proteins, fats, carbohydrates, size, price);
     }
 
     public String getName() {

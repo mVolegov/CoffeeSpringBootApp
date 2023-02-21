@@ -5,6 +5,8 @@ import com.mvoleg.coffeespringbootapp.persistence.dao.MenuCategoryRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.Arrays;
@@ -14,7 +16,8 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest
-public class MenuCategoryRepositoryTest {
+@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
+class MenuCategoryRepositoryTest {
 
     @Autowired
     private MenuCategoryRepository underTest;
@@ -25,7 +28,7 @@ public class MenuCategoryRepositoryTest {
     }
 
     @Test
-    void itShouldNotReturnAnything() {
+    void shouldNotReturnAnything() {
         // given
         underTest.saveAll(Collections.emptyList());  // We don't save anything here
 
@@ -37,7 +40,7 @@ public class MenuCategoryRepositoryTest {
     }
 
     @Test
-    void itShouldReturnMenuCategoriesOrderedByNameDesc() {
+    void shouldReturnMenuCategoriesOrderedByNameDesc() {
         // given
         String nameFirst = "Горячее";
         String nameSecond = "Холодное";

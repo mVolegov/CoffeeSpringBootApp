@@ -7,6 +7,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDateTime;
@@ -15,6 +17,7 @@ import java.util.Optional;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest
+@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 class UserRepositoryTest {
 
     @Autowired
@@ -44,7 +47,7 @@ class UserRepositoryTest {
     }
 
     @Test
-    void itShouldReturnFalseIfUserNotExists() {
+    void shouldReturnFalseIfUserNotExists() {
         // when
         Boolean expected = underTest.existsByUsername(notExistingUsername);
 
@@ -53,7 +56,7 @@ class UserRepositoryTest {
     }
 
     @Test
-    void itShouldReturnTrueIfUserExists() {
+    void shouldReturnTrueIfUserExists() {
         // when
         boolean expected = underTest.existsByUsername(username);
 
@@ -62,7 +65,7 @@ class UserRepositoryTest {
     }
 
     @Test
-    void itShouldNotFindUserByNotExistingUsername() {
+    void shouldNotFindUserByNotExistingUsername() {
         // when
         Optional<UserEntity> actual = underTest.findByUsername(notExistingUsername);
 
@@ -71,7 +74,7 @@ class UserRepositoryTest {
     }
 
     @Test
-    void itShouldFindUserByExistingUsername() {
+    void shouldFindUserByExistingUsername() {
         // when
         Optional<UserEntity> actual = underTest.findByUsername(username);
 

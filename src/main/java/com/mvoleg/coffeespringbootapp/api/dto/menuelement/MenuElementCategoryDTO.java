@@ -8,6 +8,11 @@ public class MenuElementCategoryDTO {
     public MenuElementCategoryDTO() {
     }
 
+    public MenuElementCategoryDTO(Long menuElementId, Long menuCategoryId) {
+        this.menuElementId = menuElementId;
+        this.menuCategoryId = menuCategoryId;
+    }
+
     public MenuElementCategoryDTO(Long menuElementId) {
         this.menuElementId = menuElementId;
     }

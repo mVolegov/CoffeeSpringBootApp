@@ -1,19 +1,26 @@
 package com.mvoleg.coffeespringbootapp.repository;
 
-import com.mvoleg.coffeespringbootapp.persistence.model.RoleEntity;
 import com.mvoleg.coffeespringbootapp.persistence.dao.RoleRepository;
+import com.mvoleg.coffeespringbootapp.persistence.model.RoleEntity;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest
+@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 class RoleRepositoryTest {
 
     @Autowired
     private RoleRepository underTest;
+
+    private final String notExistingRole = "Some non existing role";
 
     @AfterEach
     void tearDown() {
@@ -21,7 +28,7 @@ class RoleRepositoryTest {
     }
 
     @Test
-    void ItShouldFindRoleByName() {
+    void shouldFindRoleByName() {
         // given
         String roleCustomer = "ROLE_CUSTOMER";
 
@@ -42,7 +49,11 @@ class RoleRepositoryTest {
     }
 
     @Test
-    void itShouldNotFoundRoleByNotExistingName() {
-        // TODO
+    void shouldNotFoundRoleByNotExistingName() {
+        // when
+        Optional<RoleEntity> actual = underTest.findByName(notExistingRole);
+
+        // then
+        assertThat(actual.isPresent()).isFalse();
     }
 }

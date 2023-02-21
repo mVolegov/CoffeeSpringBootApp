@@ -19,7 +19,7 @@ open class MenuCategoryServiceImpl(
 ): MenuCategoryService {
 
     override fun getAll(): List<MenuCategoryDTO> {
-        return menuCategoryRepository.findByOrderByNameDesc().map { MenuCategoryMapper.toDTO(it) }
+        return menuCategoryRepository.findAll().map { MenuCategoryMapper.toDTO(it) }
     }
 
     override fun getById(id: Long): MenuCategoryDTO {

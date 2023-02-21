@@ -11,6 +11,7 @@ import com.mvoleg.coffeespringbootapp.persistence.dao.RoleRepository;
 import com.mvoleg.coffeespringbootapp.persistence.dao.UserRepository;
 import com.mvoleg.coffeespringbootapp.security.jwt.JwtTokenProvider;
 import com.mvoleg.coffeespringbootapp.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,6 +32,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
 
+    @Autowired
     public UserServiceImpl(AuthenticationManager authenticationManager,
                            UserRepository userRepository,
                            RoleRepository roleRepository,

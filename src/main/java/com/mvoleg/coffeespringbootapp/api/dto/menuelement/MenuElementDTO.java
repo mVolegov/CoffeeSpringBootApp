@@ -3,6 +3,7 @@ package com.mvoleg.coffeespringbootapp.api.dto.menuelement;
 import com.mvoleg.coffeespringbootapp.api.dto.menucategory.MenuCategoryDTO;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.Set;
 
 public class MenuElementDTO {
@@ -39,6 +40,30 @@ public class MenuElementDTO {
         this.size = size;
         this.price = price;
         this.categories = categories;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MenuElementDTO that = (MenuElementDTO) o;
+
+        return Objects.equals(id, that.id)
+                && Objects.equals(name, that.name)
+                && Objects.equals(description, that.description)
+                && Objects.equals(kcal, that.kcal)
+                && Objects.equals(proteins, that.proteins)
+                && Objects.equals(fats, that.fats)
+                && Objects.equals(carbohydrates, that.carbohydrates)
+                && Objects.equals(size, that.size)
+                && Objects.equals(price, that.price)
+                && Objects.equals(categories, that.categories);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, kcal, proteins, fats, carbohydrates, size, price, categories);
     }
 
     public Long getId() {

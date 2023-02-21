@@ -10,10 +10,10 @@ public class OpenApiConfig {
 
     @Bean
     public OpenAPI customOpenAPI() {
-        return new OpenAPI().info(
-                new Info()
-                        .title("Spring Boot coffee app")
-                        .description("This is backend part for mobile app")
-        );
+        Info info = new Info()
+                .title("Spring Boot coffee app")
+                .description("This is backend part for mobile app");
+
+        return new OpenAPI().info(info);
     }
 }

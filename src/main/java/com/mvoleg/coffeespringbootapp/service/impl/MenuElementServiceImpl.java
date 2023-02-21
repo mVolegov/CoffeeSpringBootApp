@@ -52,11 +52,14 @@ public class MenuElementServiceImpl implements MenuElementService {
 
     @Override
     public MenuElementDTO create(MenuElementDTO dto) {
-        MenuElementEntity menuElementEntity = menuElementRepository.save(MenuElementMapper.fromMenuElementDTOtoEntity(dto));
+        MenuElementEntity menuElementEntity = menuElementRepository.save(
+                MenuElementMapper.fromMenuElementDTOtoEntity(dto)
+        );
 
         return MenuElementMapper.toDTO(menuElementEntity);
     }
 
+    @Transactional
     @Override
     public MenuElementDTO update(Long id, MenuElementUpdateDTO dto) {
         MenuElementEntity menuElementEntityToUpdate = menuElementRepository
